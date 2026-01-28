@@ -1,0 +1,316 @@
+.product-slider-container {
+  margin-bottom: 60px;
+  position: relative;
+  animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 0 10px;
+}
+
+.slider-title-section {
+  flex: 1;
+}
+
+.slider-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+  animation: slideInLeft 0.6s ease-out;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slider-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  animation: slideInLeft 0.6s ease-out 0.2s both;
+}
+
+.slider-controls {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 2;
+  padding: 0 10px;
+  margin-top: 30px;
+}
+
+.slider-btn {
+  width: 45px;
+  height: 45px;
+  border: 2px solid var(--border-color);
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  pointer-events: auto;
+}
+
+.slider-btn:hover:not(.disabled) {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.slider-btn:active:not(.disabled) {
+  transform: scale(0.95);
+}
+
+.slider-btn.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  background: var(--bg-light);
+}
+
+.product-slider {
+  display: flex;
+  gap: 25px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  padding: 10px 5px 20px 5px;
+  
+  /* Hide scrollbar but keep functionality */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.product-slider::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.slider-item {
+  flex: 0 0 300px;
+  animation: slideInUp 0.6s ease-out both;
+  transition: transform 0.3s ease;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Staggered animation for items */
+.slider-item:nth-child(1) { animation-delay: 0.1s; }
+.slider-item:nth-child(2) { animation-delay: 0.15s; }
+.slider-item:nth-child(3) { animation-delay: 0.2s; }
+.slider-item:nth-child(4) { animation-delay: 0.25s; }
+.slider-item:nth-child(5) { animation-delay: 0.3s; }
+.slider-item:nth-child(6) { animation-delay: 0.35s; }
+.slider-item:nth-child(7) { animation-delay: 0.4s; }
+.slider-item:nth-child(8) { animation-delay: 0.45s; }
+
+/* Hover effect on slider items */
+.slider-item:hover {
+  transform: translateY(-5px);
+}
+
+/* Smooth scrolling on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .product-slider {
+    scroll-snap-type: x mandatory;
+  }
+  
+  .slider-item {
+    scroll-snap-align: start;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .slider-item {
+    flex: 0 0 280px;
+  }
+}
+
+@media (max-width: 968px) {
+  .slider-item {
+    flex: 0 0 250px;
+  }
+
+  .slider-title {
+    font-size: 1.5rem;
+  }
+
+  .slider-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .slider-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .slider-item {
+    flex: 0 0 220px;
+  }
+  
+  .product-slider {
+    gap: 20px;
+  }
+  
+  .slider-controls {
+    padding: 0 5px;
+  }
+}
+
+@media (max-width: 640px) {
+  .slider-item {
+    flex: 0 0 200px;
+  }
+
+  .slider-header {
+    margin-bottom: 20px;
+    padding: 0 5px;
+  }
+  
+  .slider-title {
+    font-size: 1.25rem;
+  }
+  
+  .slider-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .product-slider {
+    gap: 15px;
+    padding: 10px 0 20px 0;
+  }
+  
+  .slider-controls {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slider-item {
+    flex: 0 0 170px;
+  }
+  
+  .slider-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+  }
+  
+  .slider-controls {
+    padding: 0;
+  }
+}
+
+/* Loading state (optional) */
+.product-slider-container.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.product-slider-container.loading .slider-btn {
+  cursor: wait;
+}
+
+/* Empty state */
+.slider-empty {
+  text-align: center;
+  padding: 40px;
+  color: var(--text-secondary);
+}
+
+.slider-empty p {
+  font-size: 1.1rem;
+}
+
+/* Add subtle shadow to slider container */
+.product-slider {
+  position: relative;
+}
+
+/* Improve touch scrolling on mobile */
+.product-slider {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Add focus styles for accessibility */
+.slider-btn:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.slider-btn:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .slider-btn {
+    border-width: 3px;
+  }
+  
+  .slider-btn:hover:not(.disabled) {
+    border-width: 3px;
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .product-slider-container,
+  .slider-title,
+  .slider-subtitle,
+  .slider-controls,
+  .slider-item {
+    animation: none;
+  }
+  
+  .slider-btn,
+  .slider-item {
+    transition: none;
+  }
+  
+  .product-slider {
+    scroll-behavior: auto;
+  }
+}
